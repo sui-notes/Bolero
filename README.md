@@ -1,4 +1,4 @@
-# Bolero
+# Bolero Music Control
 
 A remote control for [TuneBrowser](https://tikisoft.net/) and [foobar2000](https://www.foobar2000.org/) (Windows music players), for Android.
 
