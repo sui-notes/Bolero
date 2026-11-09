@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bolero Music Control — 使い方ガイド / User Guide</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Yu Gothic", "Meiryo", sans-serif;
+    line-height: 1.75; max-width: 760px; margin: 0 auto; padding: 32px 20px 80px;
+    color: #1a1a1a; background: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e6e6e6; background: #161616; }
+    a { color: #8ab4f8; }
+    hr { border-color: #333; }
+    th, td { border-color: #333; }
+  }
+  h1 { font-size: 1.5rem; border-bottom: 2px solid currentColor; padding-bottom: 8px; }
+  h2 { font-size: 1.15rem; margin-top: 2em; }
+  h3 { font-size: 1rem; margin-top: 1.5em; }
+  .updated { color: #767676; font-size: .9rem; }
+  hr { margin: 3em 0; border: none; border-top: 1px solid #e3e3e3; }
+  ul, ol { padding-left: 1.3em; }
+  code { background: rgba(128,128,128,.15); padding: 1px 5px; border-radius: 4px; }
+  .qa dt { font-weight: bold; margin-top: 1em; }
+  .qa dd { margin-left: 0; }
+  table { border-collapse: collapse; width: 100%; margin: .5em 0; }
+  th, td { border: 1px solid #e3e3e3; padding: 6px 10px; text-align: left; vertical-align: top; }
+  .wrap { overflow-x: auto; }
+</style>
+</head>
+<body>
+
+<!-- ===================== 日本語 ===================== -->
+<h1>Bolero Music Control — 使い方ガイド</h1>
+<p class="updated">最終更新日: 2026年11月9日 ／ <a href="#english">English version below</a> ／ <a href="./">Bolero のトップへ</a></p>
+
+<p>Bolero Music Control (以下 Bolero) は、スマホ (Android) から PC の音楽プレーヤー <strong>TuneBrowser</strong> または <strong>foobar2000</strong> を操作するリモコンです。
+スマホの「アプリ」と、PC で動く無料のサーバー「<strong>en-core</strong>」の 2 つで動きます。</p>
+
+<h2>セットアップ (3 ステップ)</h2>
+<ol>
+  <li><strong>プレーヤーの準備</strong> (使う方だけ)
+    <ul>
+      <li><strong>TuneBrowser</strong>: 設定 →「OpenHome/UPnP」で「OpenHome/UPnP 対応を有効にする」と「OpenHome Player としての動作を有効にする」を Yes にします。</li>
+      <li><strong>foobar2000</strong>: コンポーネント「<a href="https://github.com/hyperblast/beefweb">Beefweb</a>」を入れ、Beefweb の設定の <strong>Music directories</strong> に音楽フォルダを登録します (ライブラリの一覧・検索・ダウンロードはこのフォルダが対象です)。</li>
+    </ul></li>
+  <li><strong>PC に en-core を入れて起動する</strong><br>
+      <a href="https://apps.microsoft.com/detail/9NT52T3RHR46">Microsoft Store から入手</a> (無料) できます。起動するとタスクトレイに常駐し、状態ウィンドウが開きます。</li>
+  <li><strong>スマホで Bolero を開き「PC を自動検索」をタップ</strong><br>
+      スマホと PC が同じ Wi-Fi にあれば、自動で見つかります。</li>
+</ol>
+<p>PC がまだ無くても、アプリの「<strong>PC なしで試す (デモ)</strong>」で、見本の曲を使ってすべての操作 (Pro の機能を含む) を試せます。</p>
+
+<h2>動作要件</h2>
+<ul>
+  <li>Android 8.0 以降のスマホ</li>
+  <li>Windows 10 (1809) 以降 / 64bit の PC と、TuneBrowser または foobar2000 (+ Beefweb)</li>
+  <li>en-core (foobar2000 で検索・ダウンロード・出力先の切り替えを使うには <strong>0.8.8 以降</strong>)</li>
+  <li>CUE シートのアルバムを曲ごとに保存するには、PC に <strong>FFmpeg</strong> が必要です (下の「困ったとき」参照)</li>
+  <li>スマホと PC が同じネットワーク (Wi-Fi) に接続されていること</li>
+</ul>
+
+<h2>基本の使い方</h2>
+<ul>
+  <li><strong>プレーヤーは自動で立ち上がります</strong>: PC でプレーヤーを開いていなくても、アプリをつなぐと en-core が起動します。どちらを起動するかは 設定 →「自動で起動するプレーヤー」で選べます。</li>
+  <li><strong>再生画面</strong>: ジャケットを左右にスワイプで曲送り、タップ (または下へスワイプ) で再生リスト。シークバー・10 秒送り/戻し・シャッフル・リピート (1 曲 / 全曲)。</li>
+  <li><strong>音量</strong>: アプリを開いている間は、<strong>スマホの音量キーで PC の音量</strong>が変わります。下のスピーカーのボタンで縦の音量パネル、長押しでミュート。</li>
+  <li><strong>曲の情報</strong>: 下の ⓘ で、発売年・ジャンル・トラック番号・コメント・形式 (FLAC 24 bit / 96 kHz など) を確認できます。</li>
+  <li><strong>再生リスト</strong>: 曲をタップでその曲へ。長押しで「次に再生 / 先頭へ / 末尾へ / リストから外す / ダウンロード」。右へスワイプで、その再生リストを入れたフォルダをライブラリで開きます。</li>
+  <li><strong>ライブラリ</strong>: 下の左端のボタン。フォルダをたどって再生・次に再生・末尾に追加。左右のスワイプで戻る / 進む。CUE シートのアルバムも 1 曲ずつ扱えます。</li>
+  <li><strong>テーマ</strong>: 設定 →「表示」で ティール (暗い地) / モノクロ (白地) を選べます。</li>
+</ul>
+
+<h2>無料の機能と Bolero Pro (買い切り)</h2>
+<p>アプリは無料で、上の基本の使い方はすべて無料で使えます。次の 5 つは、アプリ内で一度だけ購入する <strong>Bolero Pro</strong> の機能です (TuneBrowser・foobar2000 のどちらでも使えます)。</p>
+<ul>
+  <li><strong>ロック画面・通知から操作</strong> — スマホを開かずに一時停止・曲送り</li>
+  <li><strong>PC を起動 (Wake-on-LAN)</strong> — スリープ中の PC をスマホから起こす (PC の設定次第。下記参照)</li>
+  <li><strong>検索</strong> — ライブラリ全体からアルバム・曲を探す</li>
+  <li><strong>スマホにダウンロード</strong> — PC の曲をアルバム単位・曲単位で保存</li>
+  <li><strong>出力先の切り替え</strong> — スピーカー・ヘッドホンなどを選ぶ。使えないときは「いつもの出力先」へ自動で戻す</li>
+</ul>
+<p>購入は 設定 →「Bolero Pro」から。機種変更や入れ直しのときは、同じ Google アカウントで「購入を復元」を押せば戻ります。</p>
+
+<h2>検索</h2>
+<ul>
+  <li>ライブラリ画面の右上の虫眼鏡から。打つたびに絞り込まれ、結果をタップするとそのアルバムのフォルダが開きます。</li>
+  <li><strong>TuneBrowser</strong> は TuneBrowser 自身のライブラリの情報を使うので、すぐに使えます。</li>
+  <li><strong>foobar2000</strong> は、en-core が Beefweb の音楽フォルダの曲のタグを読んで検索用の索引を作ります。<strong>初回だけ、ライブラリの大きさに応じて数十秒〜数分</strong>かかり、その間は読み終わった分から結果に出ます。2 回目からは変わったファイルだけを読み直します。</li>
+</ul>
+
+<h2>スマホにダウンロード</h2>
+<ul>
+  <li>入口は 下の ↓ ボタン (再生中のアルバム・フォルダから選ぶ) と、再生リスト・ライブラリの長押しの「ダウンロード」です。</li>
+  <li>保存先は、アルバムなら <code>Music/アーティスト/アルバム/</code>、1 曲だけなら <code>Music/アーティスト/曲名</code> です。設定 →「ダウンロード」の「保存先」で別のフォルダ (SD カードなど) を選べます。</li>
+  <li>保存した曲は、ほかの音楽アプリからもそのまま再生できます。</li>
+</ul>
+<h3>保存されるファイルの形式</h3>
+<div class="wrap"><table>
+  <tr><th>PC の曲</th><th>スマホに保存されるもの</th></tr>
+  <tr><td>1 曲 1 ファイル (FLAC・MP3・M4A・Opus など)</td><td><strong>元のファイルのまま</strong> (形式・タグ・ジャケットもそのまま)</td></tr>
+  <tr><td>CUE シートのアルバム (アルバム 1 本のファイル + .cue)</td><td>設定 →「CUE のアルバムの保存形式」で選びます。<br>
+    ・<strong>曲ごとに分ける</strong> (既定): 1 曲ずつのファイルにして、曲名などのタグとジャケットを付けます。<br>
+    &nbsp;&nbsp;元が <strong>FLAC・WAV・APE など音を失わない形式</strong>なら <strong>FLAC</strong> に (音はそのまま)。<br>
+    &nbsp;&nbsp;元が <strong>MP3・M4A (AAC)・Ogg・Opus</strong> なら <strong>同じ形式のまま</strong>区間だけ切り出します (変換しないので音は劣化せず、大きさも元のまま)。<br>
+    ・<strong>元のまま (FLAC + CUE)</strong>: PC と同じ .cue + 音声ファイル + ジャケットを、名前も中身も変えずに保存します (CUE 対応の再生アプリ向け)。初回だけ、保存先のフォルダを選ぶ画面が出ます。</td></tr>
+</table></div>
+<p>CUE の曲を分けて保存するときは PC が曲を切り出すので、1 曲あたり数秒〜十数秒かかることがあります (NAS 上の大きなファイルの初回など)。</p>
+
+<h2>出力先 (スピーカー) の切り替え</h2>
+<ul>
+  <li>再生画面の形式の帯 (「FLAC · 24 bit / 96 kHz」など) をタップすると、PC の出力先の一覧が出ます。タップで切り替え。</li>
+  <li>各行の ☆ で「<strong>いつもの出力先</strong>」を決めておくと、前に使ったヘッドホンの電源が切れているときなどに、アプリをつないだときや再生を押したときに自動でそちらへ戻し、お知らせします。</li>
+  <li>スピーカーの電源を後から入れたときは「一覧を更新」を押してください。</li>
+</ul>
+
+<h2>困ったとき</h2>
+<dl class="qa">
+  <dt>Q. 「PC が見つかりません」と出る</dt>
+  <dd>次を順に確認してください。<br>
+      ① PC とスマホが<strong>同じ Wi-Fi</strong> にいるか (ゲスト用 Wi-Fi やモバイル回線は不可)<br>
+      ② スマホ側の <strong>VPN アプリを一時オフ</strong>にする (VPN が検索の通信を遮ることがあります)<br>
+      ③ PC 側で en-core の初回起動時に Windows ファイアウォールの許可ダイアログが出たら「許可」<br>
+      ④ それでも見つからないときは、設定の「接続」で PC の IP アドレスを入れて「接続」</dd>
+
+  <dt>Q. CUE のアルバムを「曲ごとに分ける」で保存すると失敗する / foobar2000 の曲名やジャケットが出ない</dt>
+  <dd>曲の切り出しと、foobar2000 の曲のタグ・埋め込みジャケットの読み取りには、PC の <strong>FFmpeg</strong> を使います。
+      PC のコマンドプロンプトで <code>winget install Gyan.FFmpeg</code> を実行し、en-core を起動し直してください。
+      FFmpeg が無くても、ほかの操作と「元のまま (FLAC + CUE)」の保存は使えます。</dd>
+
+  <dt>Q. foobar2000 で検索・ダウンロード・出力先が「対応していません」と出る</dt>
+  <dd>en-core を <strong>0.8.8 以降</strong>に更新してください (Microsoft Store の「ライブラリ」から更新できます)。
+      foobar2000 のライブラリが空のときは、Beefweb の設定の <strong>Music directories</strong> に音楽フォルダが登録されているか確認してください。
+      出力先の一覧で「Beefweb を更新してください」と出るときは、Beefweb を新しい版に入れ替えてください。</dd>
+
+  <dt>Q. ライブラリが「読み込み中」のまま</dt>
+  <dd>プレーヤーを起動している途中のことがあります。数秒待つか、アプリを開き直してください。</dd>
+
+  <dt>Q. 音が出ない</dt>
+  <dd>PC の出力先が、電源の切れた機器 (ヘッドホンなど) のままになっていないか、形式の帯をタップして確認してください (Pro)。</dd>
+
+  <dt>Q. Wake-on-LAN で PC が起きない</dt>
+  <dd><strong>スリープ / 休止状態からの復帰を想定しています。完全に電源を切った状態 (シャットダウン) からの起動は、多くの PC で動作しません。</strong>
+      スリープからでも起きない場合は、PC の BIOS/UEFI と LAN アダプターの設定で Wake on LAN を有効にしてください (名称はメーカーにより異なります)。
+      有線 LAN 接続の PC を推奨します。ハードウェアによっては動作しない場合があります。</dd>
+
+  <dt>Q. 購入したのに Pro にならない / 機種変更した</dt>
+  <dd>設定 →「Bolero Pro」の「購入を復元」を押してください。購入した Google アカウントで Play ストアにログインしている必要があります。</dd>
+</dl>
+
+<h2>よくある質問</h2>
+<dl class="qa">
+  <dt>Q. 通信は安全?</dt>
+  <dd>通信は<strong>自宅の LAN 内で完結</strong>します。外部サーバーは存在せず、アカウント登録も不要、データ収集もありません。
+      詳細は<a href="privacy-policy.html">プライバシーポリシー</a>をご覧ください。</dd>
+  <dt>Q. 料金は?</dt>
+  <dd>アプリと en-core は無料です。上の Pro の 5 機能だけが、アプリ内の買い切りです。</dd>
+</dl>
+
+<p class="updated">Bolero は TuneBrowser・foobar2000 の作者とは関係のない、独立した非公式アプリです。<br>
+お問い合わせ: <code>orbit-notes.02@proton.me</code></p>
+
+<hr>
+
+<!-- ===================== English ===================== -->
+<h1 id="english">Bolero Music Control — User Guide</h1>
+<p class="updated">Last updated: November 9, 2026 ／ <a href="./">Back to Bolero</a></p>
+
+<p>Bolero Music Control ("Bolero") is an Android remote for the Windows music players <strong>TuneBrowser</strong> and <strong>foobar2000</strong>.
+It works with a free PC server called <strong>en-core</strong>.</p>
+
+<h2>Setup (3 steps)</h2>
+<ol>
+  <li><strong>Prepare your player</strong> (whichever you use)
+    <ul>
+      <li><strong>TuneBrowser</strong>: Settings → "OpenHome/UPnP": set "Enable OpenHome/UPnP" and "Act as OpenHome Player" to Yes.</li>
+      <li><strong>foobar2000</strong>: install the <a href="https://github.com/hyperblast/beefweb">Beefweb</a> component and add your music folders to <strong>Music directories</strong> in its settings (the library, search and downloads use these folders).</li>
+    </ul></li>
+  <li><strong>Install and run en-core on the PC</strong> —
+      <a href="https://apps.microsoft.com/detail/9NT52T3RHR46">get it from the Microsoft Store</a> (free). It sits in the system tray and opens a status window.</li>
+  <li><strong>Open Bolero and tap "Find my PC"</strong> — with the phone and PC on the same Wi-Fi, it's found automatically.</li>
+</ol>
+<p>No PC yet? Choose <strong>Try the demo (no PC)</strong> in the app to try everything, Pro features included, with sample music.</p>
+
+<h2>Requirements</h2>
+<ul>
+  <li>Android 8.0 or later</li>
+  <li>Windows 10 (1809) or later, 64-bit, with TuneBrowser or foobar2000 (+ Beefweb)</li>
+  <li>en-core (<strong>0.8.8 or later</strong> for search, downloads and output switching with foobar2000)</li>
+  <li><strong>FFmpeg</strong> on the PC to save CUE-sheet albums track by track (see Troubleshooting)</li>
+  <li>Phone and PC on the same local network</li>
+</ul>
+
+<h2>Basics</h2>
+<ul>
+  <li><strong>The player starts itself</strong>: en-core launches it when the app connects. Choose which one in Settings → "Player to start".</li>
+  <li><strong>Now playing</strong>: swipe the artwork left/right to change tracks; tap it (or swipe down) for the queue. Seek bar, 10-second skip, shuffle and repeat (one / all).</li>
+  <li><strong>Volume</strong>: while the app is open, <strong>your phone's volume keys change the PC's volume</strong>. The speaker button at the bottom opens a volume panel; long-press to mute.</li>
+  <li><strong>Track info</strong>: tap ⓘ at the bottom for year, genre, track number, comment and format (for example FLAC 24 bit / 96 kHz).</li>
+  <li><strong>Queue</strong>: tap a track to play it; long-press for "Play next / Move to top / Move to bottom / Remove from queue / Download". Swipe right to open the folder the queue came from.</li>
+  <li><strong>Library</strong>: the leftmost button at the bottom. Browse folders and play, play next or add to the queue; swipe left/right to go back/forward. CUE-sheet albums work track by track.</li>
+  <li><strong>Theme</strong>: Settings → "Display": Teal (dark) or Mono (light).</li>
+</ul>
+
+<h2>Free features and Bolero Pro (one-time purchase)</h2>
+<p>The app is free, and everything above is free. These five features come with <strong>Bolero Pro</strong>, a one-time in-app purchase (with both TuneBrowser and foobar2000):</p>
+<ul>
+  <li><strong>Lock-screen and notification controls</strong></li>
+  <li><strong>Wake your PC (Wake-on-LAN)</strong> — depends on your PC's settings, see below</li>
+  <li><strong>Search</strong> across your whole library</li>
+  <li><strong>Download to your phone</strong>, by album or by track</li>
+  <li><strong>Output switching</strong> — speakers, headphones and more; falls back to your usual output when one is missing</li>
+</ul>
+<p>Buy it in Settings → "Bolero Pro". On a new phone or after reinstalling, tap "Restore purchase" with the same Google account.</p>
+
+<h2>Search</h2>
+<ul>
+  <li>Use the magnifier at the top right of the library. Results narrow as you type; tap one to open that album's folder.</li>
+  <li><strong>TuneBrowser</strong> uses its own library data, so search works right away.</li>
+  <li>With <strong>foobar2000</strong>, en-core reads the tags of the files in Beefweb's music folders to build a search index. <strong>The first time takes from tens of seconds to a few minutes</strong>, depending on the size of your library; results appear as files are read. After that, only changed files are read again.</li>
+</ul>
+
+<h2>Download to your phone</h2>
+<ul>
+  <li>Use the ↓ button at the bottom (current album or a folder), or "Download" in the long-press menu of the queue and library.</li>
+  <li>Albums go to <code>Music/Artist/Album/</code>, single tracks to <code>Music/Artist/Title</code>. Pick another folder (an SD card, for example) in Settings → "Download" → "Save to".</li>
+</ul>
+<h3>File formats</h3>
+<div class="wrap"><table>
+  <tr><th>On the PC</th><th>Saved on the phone</th></tr>
+  <tr><td>One file per track (FLAC, MP3, M4A, Opus …)</td><td><strong>The original file</strong>, untouched (format, tags and artwork included)</td></tr>
+  <tr><td>CUE-sheet album (one file for the album + .cue)</td><td>Choose in Settings → "Format for CUE albums":<br>
+    • <strong>Split into tracks</strong> (default): one file per track, with tags and artwork.<br>
+    &nbsp;&nbsp;From <strong>lossless</strong> sources (FLAC, WAV, APE …) you get <strong>FLAC</strong> (same sound).<br>
+    &nbsp;&nbsp;From <strong>MP3, M4A (AAC), Ogg or Opus</strong> the track is cut <strong>in the same format</strong>, without re-encoding (no quality loss, same size ratio).<br>
+    • <strong>As is (FLAC + CUE)</strong>: the .cue, the audio file and the cover, exactly as on the PC (for CUE-aware players). You pick the save folder once.</td></tr>
+</table></div>
+<p>Splitting CUE tracks happens on the PC, so each track can take a few seconds (longer on the first read of a big file on a NAS).</p>
+
+<h2>Output switching</h2>
+<ul>
+  <li>Tap the format bar on the now-playing screen (for example "FLAC · 24 bit / 96 kHz") to list the PC's outputs, and tap one to switch.</li>
+  <li>Mark your <strong>usual output</strong> with ☆. If the output you used last is missing (headphones turned off, for example), Bolero switches back to it when the app connects or you press play, and tells you.</li>
+  <li>Turned a speaker on later? Tap "Refresh list".</li>
+</ul>
+
+<h2>Troubleshooting</h2>
+<dl class="qa">
+  <dt>Q. "PC not found"</dt>
+  <dd>① PC and phone on the <strong>same Wi-Fi</strong> (no guest Wi-Fi or mobile data) ② turn off <strong>VPN apps</strong> on the phone for a moment
+      ③ if Windows Firewall asks about en-core on first launch, click Allow ④ or enter the PC's IP address in Settings → "Connection" and tap Connect.</dd>
+  <dt>Q. Saving CUE albums as separate tracks fails / foobar2000 titles or artwork are missing</dt>
+  <dd>Cutting tracks and reading foobar2000 tags and embedded artwork use <strong>FFmpeg</strong> on the PC.
+      Run <code>winget install Gyan.FFmpeg</code> in Command Prompt and restart en-core. Everything else, including "As is (FLAC + CUE)", works without it.</dd>
+  <dt>Q. With foobar2000, search, downloads or outputs say "not supported"</dt>
+  <dd>Update en-core to <strong>0.8.8 or later</strong> (Microsoft Store → Library). If the foobar2000 library is empty, check Beefweb's <strong>Music directories</strong>.
+      If the output list says to update Beefweb, install a newer Beefweb.</dd>
+  <dt>Q. The library keeps loading</dt>
+  <dd>The player may still be starting. Wait a few seconds or reopen the app.</dd>
+  <dt>Q. No sound</dt>
+  <dd>Check that the PC's output isn't still set to a device that's turned off — tap the format bar (Pro).</dd>
+  <dt>Q. Wake-on-LAN doesn't wake the PC</dt>
+  <dd><strong>It's meant for waking from sleep or hibernation; starting from a full shutdown doesn't work on most PCs.</strong>
+      Enable Wake on LAN in the BIOS/UEFI and the LAN adapter settings. A wired connection is recommended. Some hardware simply doesn't support it.</dd>
+  <dt>Q. I bought Pro but it isn't unlocked / I changed phones</dt>
+  <dd>Tap "Restore purchase" in Settings → "Bolero Pro", signed in to the Play Store with the Google account you bought it with.</dd>
+</dl>
+
+<h2>FAQ</h2>
+<dl class="qa">
+  <dt>Q. Is it safe?</dt>
+  <dd>Everything stays <strong>inside your local network</strong>. No external server, no account, no data collection. See the <a href="privacy-policy.html">privacy policy</a>.</dd>
+  <dt>Q. Price?</dt>
+  <dd>The app and en-core are free. Only the five Pro features above are a one-time in-app purchase.</dd>
+</dl>
+
+<p class="updated">Bolero is an independent app and is not affiliated with the developers of TuneBrowser or foobar2000.<br>
+Contact: <code>orbit-notes.02@proton.me</code></p>
+
+</body>
+</html>
